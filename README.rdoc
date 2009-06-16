@@ -1,0 +1,25 @@
+= File birthtime extension for Ruby
+
+This module extends core Ruby classes File and File::Stat with methods
+to query file birthtime (creation time).
+
+== Platforms
+
+Only systems with field st_birthtime in struct stat (BSDs with UFS2 support).
+
+== Installation
+
+  # if installing to $HOME:
+  export RB_USER_INSTALL=true
+  # or whatever is right for your shell
+  gem build file-birthtime.gemspec
+  gem install file-birthtime-0.1.gem
+
+== Usage
+
+  require 'file_btime' # => true
+  File.btime('.') # => Tue Jun 16 15:07:21 0200 2009
+  File.new('.').btime # => Tue Jun 16 15:07:21 0200 2009
+  File.stat('.').btime # => Tue Jun 16 15:07:21 0200 2009
+
+Returns nil if particular filesystem does not support birthtimes (st_birthtime<0).

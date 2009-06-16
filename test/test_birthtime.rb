@@ -17,14 +17,14 @@ class TestFileBirthtime < Test::Unit::TestCase
 	end
 
 	def test_supported
-		assert not File.btime(OK_FILE).nil?
+		assert !File.btime(OK_FILE).nil?
 	end
 
 	def test_equality
 		bt1 = File.btime(OK_FILE)
 		bt2 = File.new(OK_FILE).btime
 		bt3 = File.stat(OK_FILE).btime
-		assert not bt1.nil?
+		assert !bt1.nil?
 		assert bt1 == bt2
 		assert bt1 == bt3
 	end
@@ -58,4 +58,3 @@ class TestFileBirthtime < Test::Unit::TestCase
 		File.delete(TEST_FILE) if File.exists?(TEST_FILE)
 	end
 end
-

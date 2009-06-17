@@ -85,10 +85,10 @@ static VALUE rb_stat_btime _((VALUE));
  *  call-seq:
  *     stat.btime   => time
  *  
- *  Returns the file creation time for this file as an object of class
- *  <code>Time</code>.
+ *  Returns the creation time for this file as an object of class
+ *  <code>Time</code> or <code>nil</code> if it is not available.
  *     
- *     File.stat("testfile").atime   #=> Wed Dec 31 18:00:00 CST 1969
+ *     File.stat("testfile").btime   #=> Wed Dec 31 18:00:00 CST 1969
  *     
  */
 
@@ -103,7 +103,8 @@ rb_stat_btime(self)
  *  call-seq:
  *     File.btime(file_name)  =>  time
  *  
- *  Returns the birth (creation) time for the named file (as a <code>Time</code> object).
+ *  Returns the creation time for the named file as an object of class
+ *  <code>Time</code> or <code>nil</code> if it is not available.
  *     
  *     File.btime("testfile")   #=> Wed Apr 09 08:51:48 CDT 2003
  *     
@@ -124,8 +125,8 @@ rb_file_s_btime(klass, fname)
  *  call-seq:
  *     file.btime    => time
  *  
- *  Returns the birth (ccreation) time (a <code>Time</code> object)
- *   for <i>file</i>, or epoch if <i>birthtime</i> is not recorded.
+ *  Returns the creation time as an object of class <code>Time</code>
+ *  for <i>file</i> or <code>nil</code> if it is not available.
  *     
  *     File.new("testfile").btime   #=> Wed Dec 31 18:00:00 CST 1969
  *     
@@ -146,12 +147,20 @@ rb_file_btime(obj)
 }
 
 /*
- *  File creation times are platform specific.
+ *  Extensions for classes <code>File</code> and <code>File::Stat</code>
+ *  providing access to file birthtime (creation time).
+ *
+ *  At present works only on *BSDs.
  */
 
 void
 Init_file_btime()
 {
+#ifdef RDOC_DEFINITIONS
+    rb_cFile = rb_define_class("File", rb_cIO);
+    rb_cStat = rb_define_class_under(rb_cFile, "Stat", rb_cObject);
+#endif
+
     rb_define_singleton_method(rb_cFile, "btime", rb_file_s_btime, 1);
     rb_define_method(rb_cFile, "btime", rb_file_btime, 0);
     rb_define_method(rb_cStat, "btime", rb_stat_btime, 0);

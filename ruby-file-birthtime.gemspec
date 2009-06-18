@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
 	s.name = 'file-birthtime'
-	s.version = '0.2'
+	s.version = '0.3'
 	s.platform = Gem::Platform::RUBY
 
 	s.summary = "Birthtime support for File and File::Stat."

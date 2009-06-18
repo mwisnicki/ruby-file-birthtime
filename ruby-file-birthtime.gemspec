@@ -14,7 +14,10 @@ Gem::Specification.new do |s|
 
 	s.has_rdoc = true
 	s.extra_rdoc_files = 'README.rdoc'
-	s.rdoc_options = [ '--main', 'README.rdoc' ]
+	s.rdoc_options = [
+	    '--main', 'README.rdoc',
+	    '--exclude', 'ext/_doc.rb'
+	]
 
 	s.test_files = 'test/tests.rb'
 

@@ -147,12 +147,7 @@ rb_file_btime(obj)
 }
 
 /*
- *  Extensions for classes <code>File</code> and <code>File::Stat</code>
- *  providing access to file birthtime (creation time).
- *
- *  At present works only on *BSDs.
  */
-
 void
 Init_file_btime()
 {

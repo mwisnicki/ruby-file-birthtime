@@ -5,15 +5,28 @@ to query file birthtime (creation time).
 
 == Platforms
 
-Only systems with field st_birthtime in struct stat (BSDs with UFS2 support).
+For now, only systems with field st_birthtime in struct stat (BSDs with UFS2 support).
+
+== Requirements
+
+- rubygem >= 1.2
+- working C compiler
 
 == Installation
 
-  # if installing to $HOME:
+If installing to $HOME
   export RB_USER_INSTALL=true
-  # or whatever is right for your shell
-  gem build file-birthtime.gemspec
-  gem install file-birthtime-0.1.gem
+
+=== From gem
+
+  gem install --source http://gems.github.com mwisnicki-ruby-file-birthtime
+
+=== From source
+
+  git clone git://github.com/mwisnicki/ruby-file-birthtime.git
+  cd ruby-file-birthtime
+  gem build ruby-file-birthtime.gemspec
+  gem install file-birthtime-*.gem
 
 == Usage
 
@@ -23,3 +36,9 @@ Only systems with field st_birthtime in struct stat (BSDs with UFS2 support).
   File.stat('.').btime # => Tue Jun 16 15:07:21 0200 2009
 
 Returns nil if particular filesystem does not support birthtimes (st_birthtime<0).
+
+== TODO
+
+1. Add necessary checks to extconf.rb
+2. Port to other platforms - at least Win32, MacOSX, maybe Solaris (with ZFS).
+

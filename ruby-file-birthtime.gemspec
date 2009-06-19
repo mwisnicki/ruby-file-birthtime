@@ -1,12 +1,19 @@
 Gem::Specification.new do |s|
 
 	s.name = 'file-birthtime'
-	s.version = '0.3'
+	s.version = '0.4'
 	s.platform = Gem::Platform::RUBY
 
 	s.summary = "Birthtime support for File and File::Stat."
 
-	s.files = Dir.glob("{ext,test}/**/*")
+	#s.files = Dir.glob("{ext,test}/**/*")
+	s.files = [
+	    'ext/extconf.rb',
+	    'ext/file-btime.c',
+	    'ext/_doc.rb',
+	    'test/tests.rb',
+	    'test/test_birthtime.rb'
+	]
 	s.files.concat [ 'COPYING', 'README.rdoc' ]
 
 	s.extensions << 'ext/extconf.rb'

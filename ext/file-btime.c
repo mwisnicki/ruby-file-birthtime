@@ -5,6 +5,7 @@
   Copyright (C) 2009  Marcin Wisnicki
 
   Derived from file.c from ruby-1.8.7-p160.
+  Updated for ruby-1.9.3-p194.
 
   TODO:
   1. setting btime (maybe #utimes3(atime,mtime,btime,...) ?)

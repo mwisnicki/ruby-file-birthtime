@@ -5,6 +5,7 @@
   Copyright (C) 2009  Marcin Wisnicki
 
   Derived from file.c from ruby-1.8.7-p160.
+  Updated for ruby-1.9.3-p194.
 
   TODO:
   1. setting btime (maybe #utimes3(atime,mtime,btime,...) ?)
@@ -15,9 +16,8 @@
 **********************************************************************/
 
 #include "ruby.h"
-#include "rubyio.h"
-#include "util.h"
-#include "dln.h"
+#include "ruby/io.h"
+#include "ruby/util.h"
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -73,7 +73,7 @@ rb_stat(file, st)
 
 	rb_secure(2);
 	GetOpenFile(tmp, fptr);
-	return fstat(fileno(fptr->f), st);
+	return fstat(fileno(fptr->stdio_file), st);
     }
     SafeStringValue(file);
     return stat(StringValueCStr(file), st);
@@ -140,8 +140,8 @@ rb_file_btime(obj)
     struct stat st;
 
     GetOpenFile(obj, fptr);
-    if (fstat(fileno(fptr->f), &st) == -1) {
-	rb_sys_fail(fptr->path);
+    if (fstat(fileno(fptr->stdio_file), &st) == -1) {
+	rb_sys_fail(fptr->pathv);
     }
     return get_birthtime(&st);
 }

@@ -1,10 +1,11 @@
 Gem::Specification.new do |s|
 
 	s.name = 'file-birthtime'
-	s.version = '0.4'
+	s.version = '0.4.1'
 	s.platform = Gem::Platform::RUBY
 
 	s.summary = "Birthtime support for File and File::Stat."
+    s.description = s.summary
 
 	#s.files = Dir.glob("{ext,test}/**/*")
 	s.files = [
@@ -30,5 +31,6 @@ Gem::Specification.new do |s|
 
 	s.author = 'Marcin Wisnicki'
 	s.email = 'mwisnicki@gmail.com'
+    s.homepage = 'https://github.com/mwisnicki/ruby-file-birthtime'
 
 end

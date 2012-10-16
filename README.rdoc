@@ -9,6 +9,7 @@ For now, only systems with field st_birthtime in struct stat (BSDs with UFS2 sup
 
 == Requirements
 
+- ruby >= 1.9
 - rubygem >= 1.2
 - working C compiler
 
@@ -16,10 +17,6 @@ For now, only systems with field st_birthtime in struct stat (BSDs with UFS2 sup
 
 If installing to $HOME
   export RB_USER_INSTALL=true
-
-=== From gem
-
-  gem install --source http://gems.github.com mwisnicki-ruby-file-birthtime
 
 === From source
 
